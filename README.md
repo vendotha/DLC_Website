@@ -1,13 +1,16 @@
-
-```markdown
 # Digital Literacy Companion 🌐👵👴
-
 
 *A Django-based web platform empowering elderly users to learn digital tools easily*
 
 ## 📊 Project Metrics
 
-
+```mermaid
+pie
+    title Technology Stack
+    "Django" : 45
+    "Gemini AI" : 30
+    "HTML/CSS/JS" : 20
+    "YouTube API" : 5
 ```
 
 ```mermaid
@@ -39,24 +42,22 @@ gantt
 - Google Generative AI API key
 
 ### Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/DLC_Website.git
-
 # Navigate to project directory
 cd DLC_Website
-
 # Install dependencies
 pip install -r requirements.txt
-
 # Run migrations
 python manage.py migrate
-
 # Start development server
 python manage.py runserver
 ```
 
 ## 📂 File Structure
+
 ```
 DLC_Website/
 ├── dlc_website/         # Django project config
@@ -72,6 +73,7 @@ DLC_Website/
 ## 🌟 Key Components
 
 ### AI Chat Integration
+
 ```python
 # Using Gemini 1.5 Flash
 model = genai.GenerativeModel('gemini-1.5-flash')
@@ -84,9 +86,10 @@ response = model.generate_content(
 ```
 
 ### Tutorials Embed
+
 ```html
 <div class="video-container">
-    <iframe src="https://youtu.be/sghayXZ_RK0" 
+    <iframe src="https://www.youtube.com/embed/sghayXZ_RK0" 
             allowfullscreen></iframe>
 </div>
 ```
@@ -110,6 +113,5 @@ pie
 5. Open a Pull Request
 
 ## 📜 License
-Distributed under the MIT License. See `LICENSE` for more information.
 
-```
+Distributed under the MIT License. See `LICENSE` for more information.
