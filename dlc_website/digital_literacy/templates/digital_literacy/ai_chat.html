@@ -1,0 +1,109 @@
+{% extends 'digital_literacy/base.html' %}
+
+{% block content %}
+<h1>DigiBuddy - Your AI Assistant</h1>
+<div class="card">
+    <p>Ask DigiBuddy any question about digital tools and get simple, easy-to-understand answers.</p>
+    
+    <form method="post" id="ai-form">
+        {% csrf_token %}
+        <div style="margin: 20px 0;">
+            <textarea name="user_input" rows="4" style="width: 100%; padding: 10px;"
+                      placeholder="Ask me anything about digital tools..."
+                      required>{{ last_question }}</textarea>
+        </div>
+        <button type="submit" class="btn" id="submit-btn">Ask DigiBuddy</button>
+        <div id="loading" style="display: none; margin-top: 10px;">
+            <p style="color: var(--primary-color);">DigiBuddy is thinking...</p>
+        </div>
+    </form>
+
+    {% if error %}
+    <div style="margin-top: 20px; padding: 15px; background-color: #ffebee; border-radius: 5px;">
+        <p style="color: #c62828;">{{ error }}</p>
+    </div>
+    {% endif %}
+
+    {% if response %}
+    <div style="margin-top: 30px; padding: 20px; background-color: #f5f5f5; border-radius: 5px;">
+        <h3>DigiBuddy's Response:</h3>
+        <div style="font-size: 1.1rem; line-height: 1.8;">
+            {{ response|linebreaks }}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div style="margin-top: 40px;">
+    <h2>Try Asking DigiBuddy:</h2>
+    <div class="card-grid">
+        <div class="card" onclick="document.querySelector('textarea[name=\"user_input\"]').value = this.getAttribute('data-question')"
+             data-question="How do I send a photo on WhatsApp?">
+            <h3>Send WhatsApp Photo</h3>
+            <p>"How do I send a photo on WhatsApp?"</p>
+        </div>
+        <div class="card" onclick="document.querySelector('textarea[name=\"user_input\"]').value = this.getAttribute('data-question')"
+             data-question="How to pay with Paytm?">
+            <h3>Pay with Paytm</h3>
+            <p>"How to pay with Paytm?"</p>
+        </div>
+        <div class="card" onclick="document.querySelector('textarea[name=\"user_input\"]').value = this.getAttribute('data-question')"
+             data-question="How to find directions on Google Maps?">
+            <h3>Google Maps Directions</h3>
+            <p>"How to find directions on Google Maps?"</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('ai-form').addEventListener('submit', function() {
+        document.getElementById('submit-btn').disabled = true;
+        document.getElementById('loading').style.display = 'block';
+    });
+
+    // Voice input functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const textarea = document.querySelector('textarea[name="user_input"]');
+        const voiceBtn = document.createElement('button');
+        voiceBtn.innerHTML = '🎤';
+        voiceBtn.style.background = 'none';
+        voiceBtn.style.border = 'none';
+        voiceBtn.style.fontSize = '1.5rem';
+        voiceBtn.style.cursor = 'pointer';
+        voiceBtn.style.position = 'absolute';
+        voiceBtn.style.right = '10px';
+        voiceBtn.style.bottom = '10px';
+
+        textarea.parentNode.style.position = 'relative';
+        textarea.parentNode.appendChild(voiceBtn);
+
+        voiceBtn.addEventListener('click', function() {
+            if ('webkitSpeechRecognition' in window) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.lang = 'en-IN';
+                recognition.interimResults = false;
+
+                recognition.onstart = function() {
+                    voiceBtn.innerHTML = '🔴';
+                    textarea.placeholder = "Listening...";
+                };
+
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    textarea.value = transcript;
+                    voiceBtn.innerHTML = '🎤';
+                };
+
+                recognition.onerror = function(event) {
+                    voiceBtn.innerHTML = '🎤';
+                    textarea.placeholder = "Voice input failed. Try again.";
+                };
+
+                recognition.start();
+            } else {
+                alert("Voice input is not supported in your browser");
+            }
+        });
+    });
+</script>
+{% endblock %}

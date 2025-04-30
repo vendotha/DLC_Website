@@ -1,0 +1,35 @@
+{% extends 'digital_literacy/base.html' %}
+
+{% block content %}
+<section class="hero">
+    <h1>Welcome to Digital Literacy Companion</h1>
+    <p>Empowering Digital Literacy!</p>
+    <a href="{% url 'tutorials' %}" class="btn">Start Learning</a>
+</section>
+
+<section>
+    <h2>About Our Platform</h2>
+    <div class="card">
+        <p>Our platform is designed specifically for parents and elderly users to learn digital tools in a simple, 
+        easy-to-understand way. We provide step-by-step tutorials and an AI assistant to help with any questions.</p>
+    </div>
+</section>
+
+<section>
+    <h2>How It Works</h2>
+    <div class="card-grid">
+        <div class="card">
+            <h3>1. Choose a Tutorial</h3>
+            <p>Select from our collection of easy-to-follow guides for popular apps and services.</p>
+        </div>
+        <div class="card">
+            <h3>2. Learn at Your Pace</h3>
+            <p>Go through the materials with clear instructions and visual aids.</p>
+        </div>
+        <div class="card">
+            <h3>3. Ask DigiBuddy</h3>
+            <p>Get instant help from our AI assistant for any questions you have.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

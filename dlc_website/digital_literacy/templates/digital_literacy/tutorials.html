@@ -1,0 +1,57 @@
+{% extends 'digital_literacy/base.html' %}
+
+{% block content %}
+<h1>Digital Tutorials</h1>
+<p>Select a tutorial to get started:</p>
+
+<div class="card-grid">
+    <div class="card">
+        <h2>WhatsApp</h2>
+        <p>Learn to send messages, make calls and share media</p>
+        <div class="video-container">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/sghayXZ_RK0?si=EuvoRyCQhtgBBLdH"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Paytm</h2>
+        <p>Learn digital payments and money transfers</p>
+        <div class="video-container">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/7dsGsR3L8f4?si=fM3EtRBy5Mz8rKtY"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Google Maps</h2>
+        <p>Learn navigation and location services</p>
+        <div class="video-container">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/tui9hq9lfsU?si=JpkrOvulSQVmkov_"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<style>
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        overflow: hidden;
+        margin: 15px 0;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+</style>
+{% endblock %}

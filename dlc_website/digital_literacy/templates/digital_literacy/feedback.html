@@ -1,0 +1,32 @@
+{% extends 'digital_literacy/base.html' %}
+
+{% block content %}
+<h1>Your Feedback</h1>
+
+{% if submitted %}
+<div class="card" style="background-color: #e8f5e9;">
+    <h2>Thank You!</h2>
+    <p>We appreciate your feedback and will use it to improve our platform.</p>
+    <a href="{% url 'home' %}" class="btn">Return Home</a>
+</div>
+{% else %}
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-bottom: 15px;">
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="id_message">Message:</label>
+            {{ form.message }}
+        </div>
+        <button type="submit" class="btn">Submit Feedback</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}
